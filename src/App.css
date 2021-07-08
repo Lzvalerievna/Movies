@@ -9,3 +9,11 @@ body {
 width: 1010px;
 height: 1147px;
 }
+
+.ant-tabs-nav {
+    width: 145px;
+}
+.ant-tabs-top .ant-tabs-nav {
+    margin: 0 auto;
+}
+
