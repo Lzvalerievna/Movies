@@ -1,0 +1,11 @@
+.example {
+    margin: auto;
+    height: 500px;
+    margin-bottom: 20px;
+    padding-top: 300px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+  }
+    .example {
+      background: rgba(255,255,255,0.08);
+    }

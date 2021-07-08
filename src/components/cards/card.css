@@ -1,0 +1,94 @@
+.cardMovie {
+    display: flex;
+    margin: 25px;
+    width: 451px;
+    height: 279px;
+    border: 1px solid gainsboro;
+    box-shadow: 5px 5px 10px rgb(211, 211, 211);
+    transition: box-shadow 0.2s;
+
+}
+.cardMovie:hover {
+    box-shadow: 10px 10px 10px rgb(211, 211, 211);
+}
+
+.picture {
+    width: 183px;
+    height: 100%;
+}
+
+.title {
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 195px;
+    line-height: 20px;
+    font-size: 20px;
+}
+.releaseDate {
+    margin-top: 7px;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #827E7E;
+}
+.voteAverage {
+    margin-top: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    border: 2px solid #E9D100;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
+.overview {
+    width: 210px;
+    height: 129px;
+    margin-left: 20px;
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow:  ellipsis;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+.red {
+    margin-top: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    border: 2px solid  #E90000;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
+.orange {
+    margin-top: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    border: 2px solid  #E97E00;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
+.welloy {
+    margin-top: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    border: 2px solid #E9D100;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
+.green {
+    margin-top: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    border: 2px solid #66E900;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
