@@ -7,15 +7,17 @@ import CardMovies from '../cards/card';
 
 
 
-export default function MoviesList({movies}) {
+export default function MoviesList({movies, guestSession}) {
 
       MoviesList.propTypes = {
-            movies: PropTypes.oneOfType([PropTypes.array]).isRequired
+            movies: PropTypes.oneOfType([PropTypes.array]).isRequired,
+            guestSession: PropTypes.string.isRequired
           };
   
       return ( 
         <div className = "movies_container"> 
-              {movies.map((movie) => < CardMovies key = {movie.id} {...movie}/>)}
+              {movies.map((movie) => < CardMovies key={movie.id} {...movie}
+              guestSession = {guestSession}/>)}
         </div>
     )
   

@@ -1,9 +1,29 @@
-.aaa {
+
+.pagination {
     display: flex;
-    margin-left: 365px;
-    padding-bottom: 20px;
+    justify-content: center;
 }
-.page-item {
-    padding-left: 5px;
-    list-style: none;
+.ant-pagination-item {
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+.ant-pagination-item-active {
+    background: #1890FF;
+    border-radius: 4px;
+}
+
+.ant-pagination-item-active a  {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+.ant-pagination-item-link {
+    border: none;
+}
+.ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+    border: none;
+}
+.ant-select.ant-pagination-options-size-changer.ant-select-single.ant-select-show-arrow {
+    display: none;
 }

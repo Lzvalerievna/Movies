@@ -1,56 +1,58 @@
 .cardMovie {
     display: flex;
-    margin: 25px;
+    margin: 17px;
     width: 451px;
     height: 279px;
-    border: 1px solid gainsboro;
-    box-shadow: 5px 5px 10px rgb(211, 211, 211);
+    border: 1px solid #fafafa;
+    box-shadow: 0 5px 10px 5px rgba(221, 221, 221, 1);
     transition: box-shadow 0.2s;
-
 }
 .cardMovie:hover {
     box-shadow: 10px 10px 10px rgb(211, 211, 211);
 }
-
 .picture {
     width: 183px;
     height: 100%;
 }
 
 .title {
-    height: 50px;
     margin-top: 10px;
     margin-left: 20px;
+    margin-right: 12px;
     width: 195px;
     line-height: 20px;
     font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 .releaseDate {
-    margin-top: 7px;
     margin-left: 20px;
+    margin-top: -2px;
     font-size: 12px;
     color: #827E7E;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
-.voteAverage {
-    margin-top: 6px;
-    font-size: 12px;
-    border-radius: 50%;
-    border: 2px solid #E9D100;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding-top: 3px;
+.containerTitle {
+    margin-top: 3px;
+    margin-right: 6px;
+    display: flex;
+    justify-content: space-between;
 }
 .overview {
-    width: 210px;
-    height: 129px;
+    width: 228px;
+    height: 80px;
+    line-height: 20px;
+    margin-top: 4px;
     margin-left: 20px;
     font-size: 12px;
     overflow: hidden;
     display: -webkit-box;
     text-overflow:  ellipsis;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 .red {
     margin-top: 6px;
@@ -91,4 +93,88 @@
     height: 30px;
     text-align: center;
     padding-top: 3px;
+}
+.ant-rate {
+    margin-left: -250px;
+    margin-top: 240px;
+    padding-left: 10px;
+    width: 250px;
+    height: 46px;
+    font-size: 17px;
+}
+.ant-rate-star:not(:last-child) {
+    margin-right: 5px;
+}
+.container {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.genres {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.65);
+    word-wrap: none;
+    border: 1px solid  #d9d9d9;
+    background-color:  #fafafa;
+    border-radius: 5%;
+}
+
+@media (max-width: 540px) {
+
+    .cardMovie {
+        display: flex;
+        margin: 0 auto;
+        margin-top: 17px;
+        margin-bottom: 10px;
+        width: 387px;
+        height: 245px;
+        border: 1px solid #fafafa;
+        box-shadow: 5px 5px 10px 5px rgba(221, 221, 221, 1);
+        transition: box-shadow 0.2s;
+    }
+    .picture {
+        width: 60px;
+        height: 91px;
+        margin-left: 10px;
+        margin-top: 6px;
+    }
+    .title {
+        margin-left: 13px;
+        margin-top: 6px;
+        line-height: 25px;
+        width: 250px;
+    }
+    .releaseDate {
+        margin-top: -5px;
+        margin-left: 13px;
+    }
+    .genres {
+        margin-left: -7px;
+    }
+    .overview {
+        width: 355px;
+        height: 65px;
+        margin-left: -60px;
+        margin-top: 5px;
+        overflow: hidden;
+        display: -webkit-box;
+        text-overflow:  ellipsis;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .ant-rate {
+        margin-left: -240px;
+        margin-top: 207px;
+        padding-left: 10px;
+        width: 250px;
+        height: 46px;
+        font-size: 17px;
+    }
+  
 }

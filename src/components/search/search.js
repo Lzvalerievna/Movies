@@ -11,7 +11,7 @@ export default function InputSearch({handleOnChange}) {
 
 
     return (
-        <div className = "input">
+        <div>
             <form>
                 <Input placeholder="Type to search..." 
                 onChange={handleOnChange}
