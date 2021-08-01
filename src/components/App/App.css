@@ -4,9 +4,8 @@ body {
     margin-top: 20px;
     padding-bottom:20px;
     width: 1010px;
-    height: 1147px;
+    height: 100%;
   }
-
 
 .ant-tabs-nav {
     width: 130px;
@@ -26,5 +25,3 @@ body {
       }
     
 }
-
-

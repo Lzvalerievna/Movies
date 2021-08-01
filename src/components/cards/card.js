@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import PropTypes from "prop-types";
 import './card.css';
 import { Rate } from 'antd';
-import GenreContext from '../../context';
+import GenreContext from '../../context/context'
 
 
 

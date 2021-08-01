@@ -3,15 +3,16 @@ import React,{useEffect,useState}  from 'react';
 import 'antd/dist/antd.css';
 import {Tabs} from 'antd';
 import { debounce } from 'lodash';
-import InputSearch from './components/search/search';
-import MoviesList from './components/moviesList/movieslist';
-import './App.css';
-import Spinner from './components/spin/spin';
-import PaginationMovies from './components/pagination/pagination';
-import GenreContext from './context';
-import ErrorFetch from './components/errorFetch/errorFetch';
-import { getResource } from './service';
+import InputSearch from '../search/search';
+import MoviesList from '../moviesList/movieslist';
+import Spinner from '../spin/spin';
+import PaginationMovies from '../pagination/pagination';
+import ErrorFetch from '../errorFetch/errorFetch';
+import GenreContext from '../../context/context';
+import { getResource } from '../../Api/service';
 
+
+import './App.css';
 
 const { TabPane } = Tabs;
 
@@ -38,7 +39,6 @@ export default function App() {
     getResource(`${apiBase}/search/movie?api_key=${apiKey}&query=${termSearch}`)
    .then(data => {
      setMovies(data.results)
-     console.log(data.results)
      setLoading(false)
      setErr(false)
    })
@@ -46,7 +46,7 @@ export default function App() {
   }, []);
 
   const handleOnInput = (ev, pageNumber) => { 
-      const text = ev.target.value
+      const text = ev.target.value.trim()
       const getMovies = `${apiBase}/search/movie?api_key=${apiKey}&query=${text}&page=${pageNumber}`
         setLoading(true)
         setErr(false)
@@ -62,6 +62,7 @@ export default function App() {
             setTermSearch(text)
             setMovies(data.results)
             setTotalPage(data.total_results)
+            setCurrentPage(1)
           }
        })
        .catch(error => {
@@ -69,6 +70,7 @@ export default function App() {
          setErr(true)
        })
       }
+      setTotalPage(0)
     }
 
       useEffect(() => {   
@@ -89,7 +91,6 @@ export default function App() {
         fetch(`${apiBase}/guest_session/${guestSession}/rated/movies?api_key=${apiKey}&language=en-US&sort_by=created_at.asc`)
         .then(res => res.json())
         .then(data => {  
-          console.log(data.results)
           setMovieRated(data.results)
         })
         .catch(error => {
