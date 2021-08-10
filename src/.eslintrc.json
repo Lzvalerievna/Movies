@@ -1,8 +1,9 @@
 {
     "env": {
         "browser": true,
-        "jest": true
-    },
+        "es6": true,
+        "node": true
+      },
     "extends": [
         "airbnb",
         "airbnb/hooks",
@@ -21,28 +22,16 @@
     ],
     "parser": "babel-eslint",
     "rules": {
-        "curly": ["error"],
-        "max-depth": ["warn", 4],
-        "id-length": ["warn", { "exceptions": ["i", "j"], "min": 2 }],
-        "no-lonely-if": ["error"],
         "no-plusplus": "off",
-        "no-restricted-syntax": "off",
-        "class-methods-use-this": "off",
-        "jsx-a11y/href-no-hash": ["off"],
-        "jsx-a11y/anchor-is-valid": ["off"],
-        "jsx-a11y/label-has-associated-control": [ "error", {
-          "assert": "either"
-        }],
-        "react/state-in-constructor": ["off"],
-        "react/jsx-props-no-spreading": ["off"],
-        "react/static-property-placement": ["off"],
-        "react/jsx-filename-extension": "off",
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-        "camelcase": "off",
         "no-console": "off",
+        "react/prop-types": "off",
+        "camelcase": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "react/jsx-filename-extension": "off",
         "react-hooks/exhaustive-deps": "off",
-        "import/prefer-default-export": "off"
-    },
+        "react/jsx-props-no-spreading": ["off"],
+        "class-methods-use-this": "off"
+      },
     "settings": {
         "react": {
           "pragma": "React",

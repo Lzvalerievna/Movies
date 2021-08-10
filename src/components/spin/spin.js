@@ -7,8 +7,8 @@ export default function Spinner() {
    
     return (
         <div className="example">
-               <Spin size="large"/>
+            <Spin size="large"/>
         </div>
-    )
-    
+    )   
 }
+ 

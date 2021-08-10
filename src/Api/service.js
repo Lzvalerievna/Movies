@@ -1,3 +1,7 @@
+/*
+const apiBase = 'https://api.themoviedb.org/3';
+const apiKey = '7ffce4f49b66e12f59dd06c5256de3c2'
+
 export const getResource = async (url) => {
     try{
         const res = await fetch(url);
@@ -11,4 +15,68 @@ export const getResource = async (url) => {
       console.error('Could not fetch.',error.message)
       return false;
     }
+  }
+  */ 
+
+  export default class SwapiService {
+
+    apiBase = 'https://api.themoviedb.org/3';
+
+    apiKey = '7ffce4f49b66e12f59dd06c5256de3c2';
+
+   
+    async getResource(url) {
+      try{
+        const res = await fetch(url);
+        if(!res.ok) {
+          console.error('Could not fetch.', res.status);
+          return false;
+        }
+        console.log(res)
+        return await res.json()
+    }catch (error) {
+      console.error('Could not fetch.',error.message)
+      return false;
+    }
+    }
+    
+    getMoviesDefault(text) {
+      return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${text}`)
+    }
+
+    getSearchMovies(text,page) {
+      return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${text}&page=${page}`)
+    }
+
+    getGenre() {
+      return  this.getResource(`${this.apiBase}/genre/movie/list?api_key=${this.apiKey}`)
+    }
+
+    getSessionId() {
+      return this.getResource(`${this.apiBase}/authentication/guest_session/new?api_key=${this.apiKey}`)
+    }
+
+    async getRated(guestSession) {
+      const res =  await fetch(`${this.apiBase}/guest_session/${guestSession}/rated/movies?api_key=${this.apiKey}&language=en-US&sort_by=created_at.asc`)
+      return res;
+    }
+
+    getNextPage(value,page) {
+      return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${value}&page=${page}`)
+    }
+
+    postRated(stars,id,guestSession) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ value: stars })
+      }
+        fetch(`${this.apiBase}/movie/${id}/rating?api_key=${this.apiKey}&guest_session_id=${guestSession}`, requestOptions) 
+        .then(response => console.log(response.json()))   
+    }
+
+    apiImg = 'http://image.tmdb.org/t/p/w1280';
+    
+    apiImg2 = 'https://www.culture.ru/storage/images/114ef5db4413d02df173301f52d0ed82/2dbfc90e4ad57203361eff4a6ea41e14.jpeg';
+
   }

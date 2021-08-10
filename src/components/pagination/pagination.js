@@ -7,23 +7,22 @@ import PropTypes from "prop-types";
 
 export default function PaginationMovies({termSearch,totalPage,nextPage,currentPage}) {
 
-        PaginationMovies.propTypes = {
-        totalPage: PropTypes.number.isRequired,
-        nextPage: PropTypes.func.isRequired,
-        currentPage: PropTypes.number.isRequired,
-        termSearch: PropTypes.string.isRequired
-        };
+  PaginationMovies.propTypes = {
+    totalPage: PropTypes.number.isRequired,
+    nextPage: PropTypes.func.isRequired,
+    currentPage: PropTypes.string.isRequired,
+    termSearch: PropTypes.string.isRequired
+  };
         
-           
-        return (
-                <div className="pagination">  
-                    <Pagination
-                    defaultCurrent={1}
-                    current = {currentPage}
-                    onChange = {(page) => nextPage(page, termSearch)}
-                    total={totalPage}
-                    />
-                </div>
-        )
-       
+  return (
+    <div className="pagination">  
+      <Pagination
+        defaultCurrent={1}
+        current = {currentPage}
+        onChange = {(page) => nextPage(page, termSearch)}
+        total={totalPage}
+        pageSize = {20}
+      />
+    </div>
+  )    
 }
