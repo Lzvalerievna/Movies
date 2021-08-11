@@ -41,6 +41,36 @@
 }
 .overview {
     width: 228px;
+    height: 80px;
+    line-height: 20px;
+    margin-top: 4px;
+    margin-left: 20px;
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow:  ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+.overview2 {
+    width: 228px;
+    height: 60px;
+    line-height: 20px;
+    margin-top: 4px;
+    margin-left: 20px;
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow:  ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+.overview3 {
+    width: 228px;
     height: 40px;
     line-height: 20px;
     margin-top: 4px;
@@ -54,6 +84,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400;
 }
+
 .red {
     margin-top: 6px;
     font-size: 12px;

@@ -60,6 +60,13 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
     .postRated(stars,id,guestSession) 
    }
 
+   let classNames2 = "overview"
+   if(title.length > 40 ) {
+    classNames2 = "overview2"
+   }
+   if(title.length > 50 ) {
+    classNames2 = "overview3"
+   }
   return (
     <div className = "cardMovie">
       <img src= {poster_path ? (movieImg + poster_path) : movieImg2 } alt = {title} className="picture" />
@@ -70,7 +77,7 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
           </div>
           <h2 className="releaseDate">{releaseDate}</h2>
           <div className="container">{genres_names.map((genre) => <h3 className = "genres">{genre}</h3>)}</div>
-          <h4 className="overview">{overview}</h4>
+          <h4 className={classNames2}>{overview}</h4>
         </div>
         <div>
           <Rate allowHalf 
