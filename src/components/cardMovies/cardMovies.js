@@ -61,12 +61,10 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
    }
 
    let classNames2 = "overview"
-   if(title.length > 40 ) {
+   if(title.length > 50 && genres_names.length > 2) {
     classNames2 = "overview2"
    }
-   if(title.length > 50 ) {
-    classNames2 = "overview3"
-   }
+   
   return (
     <div className = "cardMovie">
       <img src= {poster_path ? (movieImg + poster_path) : movieImg2 } alt = {title} className="picture" />
