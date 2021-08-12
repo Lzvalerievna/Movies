@@ -8,13 +8,19 @@ import SwapiService from '../../Api/service';
 
 
 
-export default function CardMovies( {functionMovieArr, title, poster_path, release_date, vote_average, overview,genre_ids, guestSession, id,rating}) {
+export default function CardMovies( {title, poster_path, release_date, vote_average, overview,genre_ids, guestSession, id,rating}) {
+  console.log(rating)
 
   const genres = useContext(GenreContext);
   const swapiService = new SwapiService();
   const movieImg = swapiService.apiImg
   const movieImg2 = swapiService.apiImg2
   const [ratingDefault, setRatingDefault] = useState(rating)
+
+  console.log(ratingDefault)
+
+
+
   
   const genres_names = genre_ids
    .map((genre) => genres.filter((item) => item.id === genre))
@@ -24,8 +30,10 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
   const date = new Date(release_date);
   const options = { year: 'numeric', month: 'long', day: 'numeric'}
   const  releaseDate = date.toLocaleDateString("en-CA", options)
- 
 
+
+  
+ 
   CardMovies.propTypes = {
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,
@@ -55,7 +63,6 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
 
   const handleOnChange = (stars) => {
     setRatingDefault(stars)
-    functionMovieArr({stars,id})
    swapiService
     .postRated(stars,id,guestSession) 
    }

@@ -30,7 +30,8 @@
         "react/jsx-filename-extension": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/jsx-props-no-spreading": ["off"],
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "no-param-reassign": "off"
       },
     "settings": {
         "react": {

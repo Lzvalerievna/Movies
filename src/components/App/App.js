@@ -81,6 +81,20 @@ export default function App() {
         .then(obj => { setGuestSession(obj.guest_session_id)})
     },[])
 
+    useEffect(() => {
+      const updatedMovies = movies.map((movie) => {
+        const aaa = movieRated.find(item => item.id === movie.id)
+        if(aaa) {
+          movie.rating = aaa.rating
+          console.log(movie.rating )
+          return movie
+        }
+          return movie
+        })
+      setMovies(updatedMovies)
+      console.log(updatedMovies)
+    },[movieRated])
+
     const getRated = (activeKey) => {  
     if (activeKey === '2') {
       swapiService
