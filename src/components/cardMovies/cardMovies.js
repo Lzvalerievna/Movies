@@ -35,7 +35,8 @@ export default function CardMovies( {functionMovieArr, title, poster_path, relea
     genre_ids: PropTypes.oneOfType([PropTypes.array]).isRequired,
     id:PropTypes.number.isRequired,
     guestSession: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired
+    rating: PropTypes.number.isRequired,
+    functionMovieArr: PropTypes.func.isRequired
    };
 
   if(movieImg + poster_path === null) {

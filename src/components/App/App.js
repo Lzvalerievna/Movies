@@ -26,6 +26,7 @@ export default function App() {
   const [genres, setGenres] = useState([])
   const [guestSession, setGuestSession] = useState('')
   const [movieRated, setMovieRated] = useState([])
+  const [idStar, setIdStar] = useState([])
 
   const swapiService = new SwapiService()
  
@@ -106,7 +107,13 @@ export default function App() {
   
     };
 
-  const handleOnChange = debounce(handleOnInput, 1000)
+    const handleOnChange = debounce(handleOnInput, 1000)
+
+    const functionMovieArr = (obj) => {
+      const moviesObj = idStar;
+      moviesObj.push(obj)
+      setIdStar(moviesObj)
+}
 
     return (
       <div>
@@ -116,7 +123,7 @@ export default function App() {
               < InputSearch handleOnChange={handleOnChange}/>
                 {err ? <ErrorFetch errorMessage = {errorMessage}/> : null}
                 {loading ? <Spinner /> : null}
-                {!(loading || err) ?  < MoviesList movies={movies} 
+                {!(loading || err) ?  < MoviesList movies={movies} functionMovieArr = {functionMovieArr} idStar = {idStar}
                   guestSession={guestSession}
                 /> : null}
                 {totalPage > 20 ?   < PaginationMovies 
@@ -127,7 +134,9 @@ export default function App() {
                 /> : ''}
            </TabPane>
            <TabPane tab="Rated" key="2" >
-              < MoviesList movies={movieRated}/>
+              < MoviesList movies={movieRated}
+                functionMovieArr = {functionMovieArr} idStar = {idStar}
+              />
            </TabPane>
         </Tabs>
         </GenreContext.Provider>
