@@ -18,7 +18,7 @@ export default function App() {
 
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-  const [termSearch,setTermSearch] = useState('return')
+  const [termSearch,setTermSearch] = useState('')
   const [err, setErr] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [currentPage, setCurrentPage] = useState('')
@@ -34,7 +34,7 @@ export default function App() {
   useEffect(() => {
     setLoading(true)
     swapiService
-      .getMoviesDefault(termSearch)
+      .getSearchMovies()
       .then(data => {
       setMovies(data.results)
       setLoading(false)
@@ -48,7 +48,7 @@ export default function App() {
         setErr(false)
         if(text !== '') {
           swapiService
-          .getMoviesDefault(text,pageNumber)
+          .getSearchMovies(text,pageNumber)
           .then(data => {
           if(data.results.length === 0) {
           setErrorMessage('The search did not  any results')

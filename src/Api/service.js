@@ -39,12 +39,8 @@ export const getResource = async (url) => {
       return false;
     }
     }
-    
-    getMoviesDefault(text) {
-      return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${text}`)
-    }
 
-    getSearchMovies(text,page) {
+    getSearchMovies(text = "return",page) {
       return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${text}&page=${page}`)
     }
 
