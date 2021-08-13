@@ -18,7 +18,6 @@ export default function App() {
 
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-  const [termSearch,setTermSearch] = useState('')
   const [err, setErr] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [currentPage, setCurrentPage] = useState('')
@@ -56,7 +55,6 @@ export default function App() {
           setErr(true)
           }else {   
             setLoading(false)
-            setTermSearch(text)
             setMovies(data.results)
             setTotalPage(data.total_results)
             setCurrentPage(1)
@@ -130,7 +128,7 @@ export default function App() {
                   currentPage = {currentPage} 
                   nextPage = {nextPage}
                   totalPage = {totalPage}
-                  termSearch ={termSearch}
+                  
                 /> : ''}
            </TabPane>
            <TabPane tab="Rated" key="2" >
