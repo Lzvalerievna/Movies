@@ -8,9 +8,10 @@
     
 
 @media (max-width: 540px) {
-    .input {
+    .ant-input {
      margin: 0 auto;
      width: 388px;
      margin-top: 17px;
+     margin-left: 15px;
     }
 }
