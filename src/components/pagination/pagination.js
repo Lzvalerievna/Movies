@@ -5,13 +5,12 @@ import './pagination.css';
 import { Pagination } from 'antd';
 import PropTypes from "prop-types";
 
-export default function PaginationMovies({termSearch,totalPage,nextPage,currentPage}) {
+export default function PaginationMovies({totalPage,nextPage,currentPage}) {
 
   PaginationMovies.propTypes = {
     totalPage: PropTypes.number.isRequired,
     nextPage: PropTypes.func.isRequired,
-    currentPage: PropTypes.string.isRequired,
-    termSearch: PropTypes.string.isRequired
+    currentPage: PropTypes.string.isRequired
   };
         
   return (
@@ -19,7 +18,7 @@ export default function PaginationMovies({termSearch,totalPage,nextPage,currentP
       <Pagination
         defaultCurrent={1}
         current = {currentPage}
-        onChange = {(page) => nextPage(page, termSearch)}
+        onChange = {(page) => nextPage(page, currentPage)}
         total={totalPage}
         pageSize = {20}
       />

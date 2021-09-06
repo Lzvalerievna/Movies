@@ -1,22 +1,4 @@
-/*
-const apiBase = 'https://api.themoviedb.org/3';
-const apiKey = '7ffce4f49b66e12f59dd06c5256de3c2'
 
-export const getResource = async (url) => {
-    try{
-        const res = await fetch(url);
-        if(!res.ok) {
-          console.error('Could not fetch.', res.status);
-          return false;
-        }
-        console.log(res)
-        return await res.json()
-    }catch (error) {
-      console.error('Could not fetch.',error.message)
-      return false;
-    }
-  }
-  */ 
 
   export default class SwapiService {
 

@@ -3,9 +3,9 @@ import React,{useEffect,useState}  from 'react';
 import 'antd/dist/antd.css';
 import {Tabs} from 'antd';
 import { debounce } from 'lodash';
-import InputSearch from '../search/search';
+import InputSearch from '../inputSearch/inputSearch';
 import MoviesList from '../moviesList/movieslist';
-import Spinner from '../spin/spin';
+import Spinner from '../spinner/spinner';
 import PaginationMovies from '../pagination/pagination';
 import ErrorFetch from '../errorFetch/errorFetch';
 import GenreContext from '../../genreContext/genreContext';
@@ -43,9 +43,9 @@ export default function App() {
 
   const handleOnInput = (ev, pageNumber) => { 
         const text = ev.target.value.trim()
-        setLoading(true)
         setErr(false)
         if(text !== '') {
+          setLoading(true)
           swapiService
           .getSearchMovies(text,pageNumber)
           .then(data => {
@@ -128,7 +128,6 @@ export default function App() {
                   currentPage = {currentPage} 
                   nextPage = {nextPage}
                   totalPage = {totalPage}
-                  
                 /> : ''}
            </TabPane>
            <TabPane tab="Rated" key="2" >

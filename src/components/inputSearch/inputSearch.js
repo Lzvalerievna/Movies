@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input} from 'antd';
-import './search.css';
+import './inputSearch.css';
 import PropTypes from "prop-types";
 
 export default function InputSearch({handleOnChange}) {
