@@ -2,6 +2,8 @@
 .pagination {
     display: flex;
     justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 .ant-pagination-item {
     border: none;

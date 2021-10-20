@@ -1,4 +1,5 @@
 
+
 import React,{useEffect,useState}  from 'react';
 import 'antd/dist/antd.css';
 import {Tabs} from 'antd';
@@ -20,124 +21,134 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [currentPage, setCurrentPage] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [currentRate, setCurrentRate] = useState(1)
   const [totalPage, setTotalPage] = useState(0)
   const [genres, setGenres] = useState([])
   const [guestSession, setGuestSession] = useState('')
   const [movieRated, setMovieRated] = useState([])
   const [idStar, setIdStar] = useState([])
+  const [activPage, setActivePage] = useState('1')
+  const [input, setInput] = useState('return')
+
 
   const swapiService = new SwapiService()
  
 
   useEffect(() => {
-    setLoading(true)
     swapiService
       .getSearchMovies()
       .then(data => {
       setMovies(data.results)
+      setTotalPage(data.total_results)
+      setCurrentPage(1)
       setLoading(false)
       setErr(false)
       })
+    swapiService
+      .getGenre()  
+      .then(res =>  {setGenres(res.genres)})
+    swapiService 
+      .getSessionId()
+      .then(obj => { setGuestSession(obj.guest_session_id)})
   },[]);
 
   const handleOnInput = (ev, pageNumber) => { 
-        const text = ev.target.value.trim()
+    const text = ev.target.value.trim();
+    if(text !== "") {
+      setInput(text)
+      swapiService
+      .getSearchMovies(text,pageNumber)
+      .then(data => {
+      if(data.results.length === 0) {
+      setErrorMessage('The search did not  any results')
+      setMovies([])
+      setErr(true)
+      }else {   
+        setLoading(false)
         setErr(false)
-        if(text !== '') {
-          setLoading(true)
-          swapiService
-          .getSearchMovies(text,pageNumber)
-          .then(data => {
-          if(data.results.length === 0) {
-          setErrorMessage('The search did not  any results')
-          setMovies([])
-          setErr(true)
-          }else {   
-            setLoading(false)
-            setMovies(data.results)
-            setTotalPage(data.total_results)
-            setCurrentPage(1)
-          }
-       })
-       .catch(error => {
-         setErrorMessage('Could not fetch',error)
-         setErr(true)
-       })
+        setMovies(data.results)
+        setTotalPage(data.total_results)
+        setCurrentPage(1)
       }
-      setTotalPage(0)
+      })
+      .catch(error => {
+        setErrorMessage('Could not fetch',error)
+        setErr(true)
+      })
     }
+  }
 
-    useEffect(() => {   
+
+  useEffect(() => {
+    if (activPage === '1') {
+      setActivePage('1')
       swapiService
-        .getGenre()  
-        .then(res =>  {setGenres(res.genres)})
-    },[]) 
-
-    useEffect(() => { 
-      swapiService 
-        .getSessionId()
-        .then(obj => { setGuestSession(obj.guest_session_id)})
-    },[])
-
-    const getRated = (activeKey) => {  
-    if (activeKey === '2') {
+        .getSearchMovies(input,currentPage)
+        .then(data => {
+        setMovies(data.results)
+        setTotalPage(data.total_results)
+        setLoading(false)
+      })
+    }
+    if (activPage === '2') {
+      setTotalPage(0)
+      setActivePage('2')
       swapiService
-        .getRated(guestSession)
+        .getRated(guestSession,currentRate)
         .then(res => res.json())
         .then(data => {  
         setMovieRated(data.results)
-        })
-        .catch(error => {
-        setErrorMessage('Could not fetch',error)
-        setErr(true)
+        setTotalPage(data.total_results)
         })
       }
+  },[activPage,currentRate,currentPage])
+
+  const getRate = (key) => {  
+    if (key === '1') {
+      setActivePage('1')
     }
+    if (key === '2') {
+      setActivePage('2')
+    }
+  };
 
-    const nextPage = (pageNumber,value) => {
-      swapiService
-        .getNextPage(value,pageNumber)
-        .then(data => {
-        setMovies(data.results)
-        setCurrentPage(pageNumber) 
-      })
-  
-    };
+  const onChange = (page) => {
+    if(activPage === '1'){
+      setCurrentPage(page)
+    }
+    if(activPage !== '1') {
+      setCurrentRate(page)
+    }
+  }
 
-    const handleOnChange = debounce(handleOnInput, 1000)
+  const handleOnChange = debounce(handleOnInput, 1000)
 
-    const functionMovieArr = (obj) => {
-      const moviesObj = idStar;
-      moviesObj.push(obj)
-      setIdStar(moviesObj)
-}
+  const functionMovieArr = (obj) => {
+    console.log("functionMovieArr");
+    const moviesObj = idStar;
+    moviesObj.push(obj)
+    setIdStar(moviesObj)
+  }
 
-    return (
-      <div>
-        <GenreContext.Provider value = {genres}>  
-        <Tabs defaultActiveKey="1" onChange={getRated} centered>
-           <TabPane  tab="Search" key="1">
-              < InputSearch handleOnChange={handleOnChange}/>
-                {err ? <ErrorFetch errorMessage = {errorMessage}/> : null}
-                {loading ? <Spinner /> : null}
-                {!(loading || err) ?  < MoviesList movies={movies} functionMovieArr = {functionMovieArr} idStar = {idStar}
-                  guestSession={guestSession}
-                /> : null}
-                {totalPage > 20 ?   < PaginationMovies 
-                  currentPage = {currentPage} 
-                  nextPage = {nextPage}
-                  totalPage = {totalPage}
-                /> : ''}
-           </TabPane>
-           <TabPane tab="Rated" key="2" >
-              < MoviesList movies={movieRated}
-                functionMovieArr = {functionMovieArr} idStar = {idStar}
-              />
-           </TabPane>
-        </Tabs>
-        </GenreContext.Provider>
-      </div>
-    )
+  return (
+    <div className = 'content'>
+      <GenreContext.Provider value = {genres}>  
+      <Tabs defaultActiveKey="1" onChange={getRate} centered>
+        <TabPane  tab="Search" key="1">
+          < InputSearch handleOnChange={handleOnChange}/>
+            {err ? <ErrorFetch errorMessage = {errorMessage}/> : null}
+            {loading ? <Spinner /> : null}
+            {!(loading || err) ? < MoviesList movies={movies} functionMovieArr = {functionMovieArr} idStar = {idStar} guestSession={guestSession}/> : null}
+            < PaginationMovies currentPage = {currentPage} nextPage = {onChange} totalPage = {totalPage}/>
+        </TabPane>
+        <TabPane tab="Rated" key="2" >
+          < MoviesList movies={movieRated} functionMovieArr = {functionMovieArr} idStar = {idStar}/>
+          < PaginationMovies currentPage = {currentRate} nextPage = {onChange} totalPage = {totalPage} />
+        </TabPane>
+      </Tabs>
+      </GenreContext.Provider>
+    </div>
+  )
 }
 

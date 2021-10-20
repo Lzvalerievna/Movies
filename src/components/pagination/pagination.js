@@ -10,7 +10,7 @@ export default function PaginationMovies({totalPage,nextPage,currentPage}) {
   PaginationMovies.propTypes = {
     totalPage: PropTypes.number.isRequired,
     nextPage: PropTypes.func.isRequired,
-    currentPage: PropTypes.string.isRequired
+    currentPage: PropTypes.number.isRequired
   };
         
   return (
@@ -18,9 +18,10 @@ export default function PaginationMovies({totalPage,nextPage,currentPage}) {
       <Pagination
         defaultCurrent={1}
         current = {currentPage}
-        onChange = {(page) => nextPage(page, currentPage)}
+        onChange = {nextPage}
         total={totalPage}
-        pageSize = {20}
+        defaultPageSize = {20}
+        hideOnSinglePage = {true}
       />
     </div>
   )    

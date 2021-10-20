@@ -30,7 +30,11 @@
         "react/jsx-filename-extension": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/jsx-props-no-spreading": ["off"],
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "react/self-closing-comp": "off",
+        "react/jsx-boolean-value": "off",
+        "import/order": "off",
+        "no-unused-vars": "off"
       },
     "settings": {
         "react": {

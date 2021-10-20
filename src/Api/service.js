@@ -13,7 +13,7 @@
         if(!res.ok) {
           console.error('Could not fetch.', res.status);
           return false;
-        }
+        } 
         return await res.json()
     }catch (error) {
       console.error('Could not fetch.',error.message)
@@ -21,7 +21,9 @@
     }
     }
 
-    getSearchMovies(text = "return",page) {
+ 
+
+    getSearchMovies(text = "return",page = 1) {
       return this.getResource(`${this.apiBase}/search/movie?api_key=${this.apiKey}&query=${text}&page=${page}`)
     }
 
@@ -33,8 +35,8 @@
       return this.getResource(`${this.apiBase}/authentication/guest_session/new?api_key=${this.apiKey}`)
     }
 
-    async getRated(guestSession) {
-      const res =  await fetch(`${this.apiBase}/guest_session/${guestSession}/rated/movies?api_key=${this.apiKey}&language=en-US&sort_by=created_at.asc`)
+    async getRated(guestSession,  page = 1) {
+      const res =  await fetch(`${this.apiBase}/guest_session/${guestSession}/rated/movies?api_key=${this.apiKey}&language=en-US&sort_by=created_at.asc&page=${page}`)
       return res;
     }
 
@@ -49,7 +51,7 @@
         body: JSON.stringify({ value: stars })
       }
         fetch(`${this.apiBase}/movie/${id}/rating?api_key=${this.apiKey}&guest_session_id=${guestSession}`, requestOptions) 
-        .then(response => console.log(response.json()))   
+        .then(response => response.json())
     }
 
     apiImg = 'http://image.tmdb.org/t/p/w1280';

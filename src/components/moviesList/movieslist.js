@@ -8,11 +8,10 @@ export default function MoviesList({movies, guestSession,functionMovieArr,idStar
 
   MoviesList.propTypes = {
     movies: PropTypes.oneOfType([PropTypes.array]).isRequired,
-    guestSession: PropTypes.string.isRequired,
     functionMovieArr: PropTypes.func.isRequired,
     idStar: PropTypes.oneOfType([PropTypes.array]).isRequired
   };
-  
+
   const elements = movies.map((movie) => {
     idStar.forEach((movieObj) => {
       const copyMovie = movie;
